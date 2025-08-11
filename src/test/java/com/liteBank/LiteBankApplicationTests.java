@@ -1,5 +1,6 @@
 package com.liteBank;
 
+import com.zaxxer.hikari.HikariDataSource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -12,8 +13,9 @@ class LiteBankApplicationTests {
 
 	@Test
 	void testCanConnectToDataBase() {
-		try(HikariDataSource) {
-
+		try(HikariDataSource hikariDaraSource = new HikariDataSource()) {
+			hikariDaraSource.setJdbcUrl("jdbc:postgresql://localhost:5432/postgres");
+			hikariDaraSource.setUsername();
 		} catch() {
 
 		}
