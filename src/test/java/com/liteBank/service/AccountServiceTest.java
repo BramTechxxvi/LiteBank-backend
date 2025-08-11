@@ -23,7 +23,7 @@ public class AccountServiceTest {
     @Sql(scripts = "/db/data.sql")
     void testCanDeposit() {
         DepositRequest depositRequest = new DepositRequest();
-        depositRequest.setAccountNumber("0123456789");
+        depositRequest.setAccountNumber("1123456789");
         depositRequest.setPaymentMethod(PaymentMethod.CARD);
         depositRequest.setAmount(new BigDecimal(10_000));
 
