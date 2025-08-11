@@ -18,5 +18,6 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     private BigDecimal amount;
+    private String accountNumber;
     private TransactionType transactionType;
 }
