@@ -35,6 +35,7 @@ public class AccountServiceImpl implements AccountService {
         depositResponse.setAmount(new BigDecimal(transactionResponse.getAmount()));
         depositResponse.setTransactionId(transactionResponse.getId());
         depositResponse.setTransactionStatus(TransactionStatus.SUCCESS);
-        return null;
+
+        return depositResponse;
     }
 }
