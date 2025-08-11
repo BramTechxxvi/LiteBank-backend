@@ -4,6 +4,10 @@ import com.zaxxer.hikari.HikariDataSource;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.sql.Connection;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 @SpringBootTest
 class LiteBankApplicationTests {
 
@@ -13,12 +17,16 @@ class LiteBankApplicationTests {
 
 	@Test
 	void testCanConnectToDataBase() {
-//		testCanConnectToDataBasetry(HikariDataSource hikariDaraSource = new HikariDataSource()) {
-//			hikariDaraSource.setJdbcUrl("jdbc:postgresql://localhost:5432/postgres");
-//			hikariDaraSource.setUsername();
-//		} catch() {
-//
-//		}
+		try(HikariDataSource hikariDataSource = new HikariDataSource()) {
+			hikariDataSource.setJdbcUrl("jdbc:postgresql://localhost:5432/lite_bank");
+			hikariDataSource.setUsername("postgres");
+			hikariDataSource.setPassword("postgres");
+
+			Connection connection = hikariDataSource.getConnection();
+			assertNotNull(connection);
+		} catch(Exception e) {
+			assertNotNull(e);
+		}
 	}
 
 }
