@@ -10,4 +10,13 @@ class LiteBankApplicationTests {
 	void contextLoads() {
 	}
 
+	@Test
+	void testCanConnectToDataBase() {
+		try(HikariDataSource) {
+
+		} catch() {
+
+		}
+	}
+
 }
