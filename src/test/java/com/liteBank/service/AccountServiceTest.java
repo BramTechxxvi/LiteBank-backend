@@ -9,6 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 @SpringBootTest
 public class AccountServiceTest {
 
@@ -21,8 +23,9 @@ public class AccountServiceTest {
         depositRequest.setSenderAccountNumber("0701234567");
         depositRequest.setRecipientAccountNumber("0801234567");
         depositRequest.setPaymentMethod(PaymentMethod.CARD);
-        depositRequest.setAmount(new BigDecimal("10_000.00"));
+        depositRequest.setAmount(new BigDecimal("10000.00"));
 
         DepositResponse depositResponse = accountService.deposit(depositRequest);
+        assertNotNull(depositResponse.getTransactionId());
     }
 }

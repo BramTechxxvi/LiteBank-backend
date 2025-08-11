@@ -13,12 +13,12 @@ class LiteBankApplicationTests {
 
 	@Test
 	void testCanConnectToDataBase() {
-		try(HikariDataSource hikariDaraSource = new HikariDataSource()) {
-			hikariDaraSource.setJdbcUrl("jdbc:postgresql://localhost:5432/postgres");
-			hikariDaraSource.setUsername();
-		} catch() {
-
-		}
+//		testCanConnectToDataBasetry(HikariDataSource hikariDaraSource = new HikariDataSource()) {
+//			hikariDaraSource.setJdbcUrl("jdbc:postgresql://localhost:5432/postgres");
+//			hikariDaraSource.setUsername();
+//		} catch() {
+//
+//		}
 	}
 
 }

@@ -9,6 +9,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public DepositResponse deposit(DepositRequest depositRequest) {
+        accountRepository.save()
         return null;
     }
 }
