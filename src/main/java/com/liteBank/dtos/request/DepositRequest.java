@@ -10,8 +10,7 @@ import java.math.BigDecimal;
 @Getter
 public class DepositRequest {
 
-    private String senderAccountNumber;
-    private String recipientAccountNumber;
+    private String accountNumber;
     private BigDecimal amount;
     private PaymentMethod paymentMethod;
 }

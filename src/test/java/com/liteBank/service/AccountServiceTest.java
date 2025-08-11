@@ -20,10 +20,9 @@ public class AccountServiceTest {
     @Test
     void testCanDeposit() {
         DepositRequest depositRequest = new DepositRequest();
-        depositRequest.setSenderAccountNumber("0701234567");
-        depositRequest.setRecipientAccountNumber("0801234567");
+        depositRequest.setAccountNumber("0701234567");
         depositRequest.setPaymentMethod(PaymentMethod.CARD);
-        depositRequest.setAmount(new BigDecimal("10000.00"));
+        depositRequest.setAmount(new BigDecimal(10_000));
 
         DepositResponse depositResponse = accountService.deposit(depositRequest);
         assertNotNull(depositResponse.getTransactionId());
