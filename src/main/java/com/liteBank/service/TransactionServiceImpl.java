@@ -34,6 +34,9 @@ public class TransactionServiceImpl implements TransactionService {
     public TransactionResponse getTransactionBy(String id) {
         Transaction transaction = transactionRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Transaction not found"));
-        return null;
+        TransactionResponse response = new TransactionResponse();
+        response.setAmount(transaction.getAmount().toString());
+
+        return response;
     }
 }
