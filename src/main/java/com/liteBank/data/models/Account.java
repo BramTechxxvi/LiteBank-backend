@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 @Setter
 @Getter
 @Entity
-@Table(name="accounts")
 public class Account {
 
     @Id
