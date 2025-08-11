@@ -1,13 +1,14 @@
 package com.liteBank.dtos.response;
 
 import com.liteBank.dtos.enums.TransactionStatus;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 
 @Setter
 @Getter
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class DepositResponse {
 
     private TransactionStatus transactionStatus;
