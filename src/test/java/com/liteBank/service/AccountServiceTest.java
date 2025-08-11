@@ -1,6 +1,6 @@
 package com.liteBank.service;
 
-import com.liteBank.dtos.DepositRequest;
+import com.liteBank.dtos.request.DepositRequest;
 import com.liteBank.dtos.PaymentMethod;
 import com.liteBank.dtos.response.DepositResponse;
 import org.junit.jupiter.api.Test;

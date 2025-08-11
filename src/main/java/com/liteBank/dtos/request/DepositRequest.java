@@ -1,5 +1,6 @@
-package com.liteBank.dtos;
+package com.liteBank.dtos.request;
 
+import com.liteBank.dtos.PaymentMethod;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
