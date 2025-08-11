@@ -8,9 +8,6 @@ import com.liteBank.exception.AccountNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
@@ -21,7 +18,7 @@ public class AccountServiceImpl implements AccountService {
     public DepositResponse deposit(DepositRequest depositRequest) {
         Account foundAccount = accountRepository.findByAccountNumber(depositRequest.getAccountNumber())
                 .orElseThrow(()-> new AccountNotFoundException("Account not found"));
-        foundAccount.
+//        foundAccount.
         return null;
     }
 }

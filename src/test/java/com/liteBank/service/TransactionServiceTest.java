@@ -27,8 +27,8 @@ public class TransactionServiceTest {
         assertNotNull(transactionResponse);
         TransactionResponse transaction =
                 transactionService.getTransactionBy(transactionResponse.getId());
-        assertThat(transResponse).isNotNull();
-        assertThat(transResponse.getAmount())
+        assertThat(transaction).isNotNull();
+        assertThat(transaction.getAmount())
                 .isEqualTo(transactionRequest.getAmount().toString());
     }
 }
