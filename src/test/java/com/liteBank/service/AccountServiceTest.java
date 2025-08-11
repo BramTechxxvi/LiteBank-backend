@@ -4,6 +4,7 @@ import com.liteBank.dtos.request.DepositRequest;
 import com.liteBank.dtos.PaymentMethod;
 import com.liteBank.dtos.response.DepositResponse;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
@@ -11,14 +12,19 @@ import java.math.BigDecimal;
 @SpringBootTest
 public class AccountServiceTest {
 
+    @Autowired
+    private AccountService accountService;
+
     @Test
     void testCanDeposit() {
-        DepositRequest depositRequest = new DepositRequest(
-                "0801234567",
-                "0701234567",
-                new BigDecimal(10_000),
-                PaymentMethod.CARD);
+        DepositRequest depositRequest = new DepositRequest();
+        depositRequest.setSenderAccountNumber("0701234567");
+        depositRequest.setRecipientAccountNumber("0801234567");
+        depositRequest.setPaymentMethod(PaymentMethod.CARD);
+        depositRequest.setAmount(new BigDecimal("10_000.00"));
+
     }
-    DepositResponse depositResponse = accountService.deposit(depositRequest);
+    DepositResponse depositResponse = accountService.deposit(
+   ;
 
 }
