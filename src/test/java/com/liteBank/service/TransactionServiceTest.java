@@ -2,6 +2,7 @@ package com.liteBank.service;
 
 import com.liteBank.dtos.enums.TransactionType;
 import com.liteBank.dtos.request.CreateTransactionRequest;
+import com.liteBank.dtos.response.CreateTransactionResponse;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -14,5 +15,7 @@ public class TransactionServiceTest {
         createTransactionRequest.setTransactionType(TransactionType.CREDIT);
         createTransactionRequest.setAccountNumber("0123456789");
         createTransactionRequest.setAmount(new BigDecimal(20_000));
+
+        CreateTransactionResponse transactionResponse = new CreateTransactionResponse();
     }
 }
