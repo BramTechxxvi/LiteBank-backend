@@ -3,6 +3,7 @@ package com.liteBank.service;
 import com.liteBank.dtos.enums.TransactionType;
 import com.liteBank.dtos.request.CreateTransactionRequest;
 import com.liteBank.dtos.response.CreateTransactionResponse;
+import com.liteBank.dtos.response.TransactionResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -24,7 +25,7 @@ public class TransactionServiceTest {
 
         CreateTransactionResponse transactionResponse = transactionService.create(transactionRequest);
         assertNotNull(transactionResponse);
-        CreateTransactionResponse transResponse =
+        TransactionResponse transaction =
                 transactionService.getTransactionBy(transactionResponse.getId());
         assertThat(transResponse).isNotNull();
         assertThat(transResponse.getAmount())
