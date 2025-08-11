@@ -1,4 +1,4 @@
-package com.liteBank.dtos;
+package com.liteBank.dtos.enums;
 
 public enum PaymentMethod {
 

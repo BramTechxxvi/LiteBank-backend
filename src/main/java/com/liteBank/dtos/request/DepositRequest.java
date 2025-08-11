@@ -1,17 +1,13 @@
 package com.liteBank.dtos.request;
 
-import com.liteBank.dtos.PaymentMethod;
-import lombok.AllArgsConstructor;
+import com.liteBank.dtos.enums.PaymentMethod;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
 
 @Setter
 @Getter
-@RequiredArgsConstructor
-@AllArgsConstructor
 public class DepositRequest {
 
     private String senderAccountNumber;
