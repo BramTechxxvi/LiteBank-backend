@@ -22,8 +22,7 @@ public class AccountServiceTest {
         depositRequest.setRecipientAccountNumber("0801234567");
         depositRequest.setPaymentMethod(PaymentMethod.CARD);
         depositRequest.setAmount(new BigDecimal("10_000.00"));
-    }
-    DepositResponse depositResponse = accountService.deposit(depositRequest);
-   ;
 
+        DepositResponse depositResponse = accountService.deposit(depositRequest);
+    }
 }
