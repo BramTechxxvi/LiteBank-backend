@@ -21,6 +21,7 @@ public class AccountServiceImpl implements AccountService {
     public DepositResponse deposit(DepositRequest depositRequest) {
         Account foundAccount = accountRepository.findByAccountNumber(depositRequest.getAccountNumber())
                 .orElseThrow(()-> new AccountNotFoundException("Account not found"));
+        foundAccount.
         return null;
     }
 }
