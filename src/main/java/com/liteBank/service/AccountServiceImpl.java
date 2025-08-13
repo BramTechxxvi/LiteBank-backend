@@ -6,6 +6,7 @@ import com.liteBank.dtos.enums.TransactionStatus;
 import com.liteBank.dtos.enums.TransactionType;
 import com.liteBank.dtos.request.CreateTransactionRequest;
 import com.liteBank.dtos.request.DepositRequest;
+import com.liteBank.dtos.response.CreateTransactionResponse;
 import com.liteBank.dtos.response.DepositResponse;
 import com.liteBank.exception.AccountNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,8 @@ public class AccountServiceImpl implements AccountService {
     public DepositResponse deposit(DepositRequest depositRequest) {
         Account foundAccount = accountRepository.findByAccountNumber(depositRequest.getAccountNumber())
                 .orElseThrow(()-> new AccountNotFoundException("Account not found"));
+
+
         // Creating transaction record to use
         CreateTransactionRequest transactionRequest = new CreateTransactionRequest();
         transactionRequest.setAmount(depositRequest.getAmount());
@@ -34,6 +37,24 @@ public class AccountServiceImpl implements AccountService {
         DepositResponse depositResponse = new DepositResponse();
         depositResponse.setAmount(new BigDecimal(transactionResponse.getAmount()));
         depositResponse.setTransactionId(transactionResponse.getId());
+        depositResponse.setTransactionStatus(TransactionStatus.SUCCESS);
+
+        return depositResponse;
+    }
+
+    private static CreateTransactionRequest buildTransactionRequest(DepositRequest depositRequest) {
+        var createTransactionRequest = new CreateTransactionRequest();
+        createTransactionRequest.setAccountNumber(depositRequest.getAccountNumber());
+        createTransactionRequest.setAmount(depositRequest.getAmount());
+        createTransactionRequest.setTransactionType(TransactionType.CREDIT);
+
+        return createTransactionRequest;
+    }
+
+    private static DepositResponse buildDepositResponse(CreateTransactionResponse response) {
+        var depositResponse = new DepositResponse();
+        depositResponse.setAmount(new BigDecimal(response.getAmount()));
+        depositResponse.setTransactionId(response.getId());
         depositResponse.setTransactionStatus(TransactionStatus.SUCCESS);
 
         return depositResponse;

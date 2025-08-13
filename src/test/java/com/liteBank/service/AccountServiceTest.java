@@ -20,7 +20,7 @@ public class AccountServiceTest {
     private AccountService accountService;
 
     @Test
-    @Sql(scripts = "/db/data.sql")
+    @Sql(scripts = "/db/data2.sql")
     void testCanDeposit() {
         DepositRequest depositRequest = new DepositRequest();
         depositRequest.setAccountNumber("1123456789");
