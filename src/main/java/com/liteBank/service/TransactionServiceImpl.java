@@ -18,10 +18,7 @@ public class TransactionServiceImpl implements TransactionService {
     public CreateTransactionResponse create(CreateTransactionRequest createRequest) {
         Transaction transaction = transactionRepository.save(buildTransactionFrom(createRequest));
 
-        CreateTransactionResponse response = new CreateTransactionResponse();
-        extracted(response, transaction);
-
-        return response;
+        return buildTransactionResponse(transaction);
     }
 
     private static CreateTransactionResponse buildTransactionResponse(Transaction transaction) {
