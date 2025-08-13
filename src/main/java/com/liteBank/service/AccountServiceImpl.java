@@ -26,20 +26,10 @@ public class AccountServiceImpl implements AccountService {
         Account foundAccount = accountRepository.findByAccountNumber(depositRequest.getAccountNumber())
                 .orElseThrow(()-> new AccountNotFoundException("Account not found"));
 
-
-        // Creating transaction record to use
-        CreateTransactionRequest transactionRequest = new CreateTransactionRequest();
-        transactionRequest.setAmount(depositRequest.getAmount());
-        transactionRequest.setAccountNumber(depositRequest.getAccountNumber());
-        transactionRequest.setTransactionType(TransactionType.CREDIT);
+        CreateTransactionRequest transactionRequest = buildTransactionRequest(depositRequest);
         var transactionResponse = transactionService.create(transactionRequest);
 
-        DepositResponse depositResponse = new DepositResponse();
-        depositResponse.setAmount(new BigDecimal(transactionResponse.getAmount()));
-        depositResponse.setTransactionId(transactionResponse.getId());
-        depositResponse.setTransactionStatus(TransactionStatus.SUCCESS);
-
-        return depositResponse;
+        return buildDepositResponse(transactionResponse);
     }
 
     private static CreateTransactionRequest buildTransactionRequest(DepositRequest depositRequest) {
