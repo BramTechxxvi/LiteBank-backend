@@ -15,12 +15,8 @@ public class TransactionServiceImpl implements TransactionService {
     private TransactionRepository transactionRepository;
 
     @Override
-    public CreateTransactionResponse create(CreateTransactionRequest request) {
-        Transaction transaction = new Transaction();
-        transaction.setAmount(request.getAmount());
-        transaction.setTransactionType(request.getTransactionType());
-        transaction.setAccountNumber(request.getAccountNumber());
-        transaction = transactionRepository.save(transaction);
+    public CreateTransactionResponse create(CreateTransactionRequest createRequest) {
+        Transaction transaction = transactionRepository.save(buildTransactionFrom(createRequest));
 
         CreateTransactionResponse response = new CreateTransactionResponse();
         response.setId(transaction.getId());
@@ -28,6 +24,14 @@ public class TransactionServiceImpl implements TransactionService {
         response.setTransactionType(transaction.getTransactionType().toString());
 
         return response;
+    }
+
+    private static Transaction buildTransactionFrom(CreateTransactionRequest request) {
+        Transaction transaction = new Transaction();
+        transaction.setAmount(request.getAmount());
+        transaction.setTransactionType(request.getTransactionType());
+        transaction.setAccountNumber(request.getAccountNumber());
+        return transaction;
     }
 
     @Override
