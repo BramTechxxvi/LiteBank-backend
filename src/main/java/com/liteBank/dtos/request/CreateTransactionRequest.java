@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 @Setter
 @Getter
 public class CreateTransactionRequest {
-
     private TransactionType transactionType;
     private String accountNumber;
     private BigDecimal amount;
