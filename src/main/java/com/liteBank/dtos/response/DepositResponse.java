@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class DepositResponse {
-
     private TransactionStatus transactionStatus;
     private String transactionId;
     private BigDecimal amount;
