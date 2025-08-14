@@ -8,4 +8,5 @@ public interface TransactionService {
 
     CreateTransactionResponse create(CreateTransactionRequest request);
     TransactionResponse getTransactionBy(String id);
+    List<\>
 }
