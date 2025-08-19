@@ -8,9 +8,7 @@ import org.springframework.context.annotation.Configuration;
 public class BeanConfig {
 
     @Bean
-    public BeanConfig modelMapper() {
-        ModelMapper modelMapper = new ModelMapper();
-        modelMapper.getConfiguration().setFieldMatchingEnabled(true);
-        return new BeanConfig();
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
     }
 }

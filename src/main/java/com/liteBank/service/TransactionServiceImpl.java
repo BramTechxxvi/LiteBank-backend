@@ -6,15 +6,24 @@ import com.liteBank.dtos.request.CreateTransactionRequest;
 import com.liteBank.dtos.response.CreateTransactionResponse;
 import com.liteBank.dtos.response.TransactionResponse;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class TransactionServiceImpl implements TransactionService {
 
     private TransactionRepository transactionRepository;
+    private ModelMapper modelMapper;
 
     @Override
     public CreateTransactionResponse create(CreateTransactionRequest createRequest) {
@@ -50,8 +59,16 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<TransactionResponse> getTransactionsFor(String accountNumber) {
-        transactionRepository.
-        return List.of();
+    public List<TransactionResponse> getTransactionsFor(String accountNumber, int page, int size) {
+        page = page -1 ;
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Transaction> transactions =
+                transactionRepository.retrieveTransactionByAccountNumber(accountNumber, pageable);
+        Type listType = new TypeToken<List<TransactionResponse>>() {}.getType();
+        List<TransactionResponse> transactionResponses =
+                modelMapper.map(transactions.getContent(), listType);
+        log.info("Retrieved :: {}", transactionResponses);
+
+        return transactionResponses;
     }
 }
