@@ -51,6 +51,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<TransactionResponse> getTransactionsFor(String accountNumber) {
+        transactionRepository.
         return List.of();
     }
 }

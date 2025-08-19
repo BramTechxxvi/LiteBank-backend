@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, String> {
-    @Query("select t from transaction t where t.account_number:=accountNumber")
+    @Query("select t from Transaction t where t.accountNumber=:accountNumber")
     Page<Transaction> getByAccountNumber(String accountNumber, Pageable pageable);
 }
