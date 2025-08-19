@@ -29,7 +29,7 @@ public class TransactionServiceTest {
         CreateTransactionResponse transactionResponse = transactionService.create(transactionRequest);
         assertNotNull(transactionResponse);
         TransactionResponse transaction =
-                transactionService.getTransactionBy(transactionResponse.getId());
+                transactionService.getTransactionById(transactionResponse.getId());
         assertThat(transaction).isNotNull();
         assertThat(transaction.getAmount())
                 .isEqualTo(transactionRequest.getAmount().toString());

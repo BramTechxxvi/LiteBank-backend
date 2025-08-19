@@ -9,7 +9,7 @@ import java.util.List;
 public interface TransactionService {
 
     CreateTransactionResponse create(CreateTransactionRequest request);
-    TransactionResponse getTransactionBy(String id);
+    TransactionResponse getTransactionById(String id);
     List<TransactionResponse> getTransactionsFor(String accountNumber, int pageable, int size);
 
 }

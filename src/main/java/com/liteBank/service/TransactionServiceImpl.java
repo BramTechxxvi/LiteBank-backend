@@ -22,40 +22,39 @@ import java.util.List;
 @Slf4j
 public class TransactionServiceImpl implements TransactionService {
 
-    private TransactionRepository transactionRepository;
-    private ModelMapper modelMapper;
+    private final TransactionRepository transactionRepository;
+    private final ModelMapper modelMapper;
 
     @Override
     public CreateTransactionResponse create(CreateTransactionRequest createRequest) {
         Transaction transaction = transactionRepository.save(buildTransactionFrom(createRequest));
-
         return buildTransactionResponse(transaction);
     }
 
-    private static CreateTransactionResponse buildTransactionResponse(Transaction transaction) {
-        CreateTransactionResponse response = new CreateTransactionResponse();
-        response.setId(transaction.getId());
-        response.setAmount(transaction.getAmount().toString());
-        response.setTransactionType(transaction.getTransactionType().toString());
-        return response;
+    private CreateTransactionResponse buildTransactionResponse(Transaction transaction) {
+//        CreateTransactionResponse response = new CreateTransactionResponse();
+//        response.setId(transaction.getId());
+//        response.setAmount(transaction.getAmount().toString());
+//        response.setTransactionType(transaction.getTransactionType().toString()
+        return modelMapper.map(transaction, CreateTransactionResponse.class);
     }
 
-    private static Transaction buildTransactionFrom(CreateTransactionRequest request) {
-        Transaction transaction = new Transaction();
-        transaction.setAmount(request.getAmount());
-        transaction.setTransactionType(request.getTransactionType());
-        transaction.setAccountNumber(request.getAccountNumber());
-        return transaction;
+    private Transaction buildTransactionFrom(CreateTransactionRequest request) {
+//        Transaction transaction = new Transaction();
+//        transaction.setAmount(request.getAmount());
+//        transaction.setTransactionType(request.getTransactionType());
+//        transaction.setAccountNumber(request.getAccountNumber());
+        return modelMapper.map(request, Transaction.class);
     }
 
     @Override
-    public TransactionResponse getTransactionBy(String id) {
+    public TransactionResponse getTransactionById(String id) {
         Transaction transaction = transactionRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Transaction not found"));
-        TransactionResponse response = new TransactionResponse();
-        response.setAmount(transaction.getAmount().toString());
+//        TransactionResponse response = new TransactionResponse();
+//        response.setAmount(transaction.getAmount().toString());
 
-        return response;
+        return modelMapper.map(transaction, TransactionResponse.class);
     }
 
     @Override
