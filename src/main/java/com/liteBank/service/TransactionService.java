@@ -10,6 +10,6 @@ public interface TransactionService {
 
     CreateTransactionResponse create(CreateTransactionRequest request);
     TransactionResponse getTransactionById(String id);
-    List<TransactionResponse> getTransactionsFor(String accountNumber, int pageable, int size);
+    List<TransactionResponse> getTransactionsFor(String accountNumber);
 
 }
