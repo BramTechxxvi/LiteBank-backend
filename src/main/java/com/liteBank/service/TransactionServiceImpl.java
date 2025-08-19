@@ -8,6 +8,8 @@ import com.liteBank.dtos.response.TransactionResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class TransactionServiceImpl implements TransactionService {
@@ -45,5 +47,10 @@ public class TransactionServiceImpl implements TransactionService {
         response.setAmount(transaction.getAmount().toString());
 
         return response;
+    }
+
+    @Override
+    public List<TransactionResponse> getTransactionsFor(String accountNumber) {
+        return List.of();
     }
 }
