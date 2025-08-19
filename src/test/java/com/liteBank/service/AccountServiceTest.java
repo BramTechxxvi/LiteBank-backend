@@ -22,10 +22,10 @@ public class AccountServiceTest {
     private AccountService accountService;
 
     @Test
-    @Sql(scripts = "/db/data2.sql")
+    @Sql(scripts = {"/db/data.sql"})
     void testCanDeposit() {
         DepositRequest depositRequest = new DepositRequest();
-        depositRequest.setAccountNumber("1123456789");
+        depositRequest.setAccountNumber("0123456789");
         depositRequest.setPaymentMethod(PaymentMethod.CARD);
         depositRequest.setAmount(new BigDecimal(10_000));
 
@@ -35,8 +35,9 @@ public class AccountServiceTest {
     }
 
     @Test
+    @Sql(scripts = {"/db/data.sql"})
     void testCanViewAccount() {
-        ViewAccountResponse response = accountService.viewDetailsFor("1123456789");
+        ViewAccountResponse response = accountService.viewDetailsFor("0123456789");
         assertThat(response).isNotNull();
         assertThat(response.getBalance()).isEqualTo(new BigDecimal("10000.00").toString());
 
