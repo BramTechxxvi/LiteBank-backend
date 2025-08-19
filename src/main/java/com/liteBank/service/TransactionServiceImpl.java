@@ -51,8 +51,10 @@ public class TransactionServiceImpl implements TransactionService {
     public TransactionResponse getTransactionById(String id) {
         Transaction transaction = transactionRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Transaction not found"));
-//        TransactionResponse response = new TransactionResponse();
-//        response.setAmount(transaction.getAmount().toString());
+/*
+        TransactionResponse response = new TransactionResponse();
+        response.setAmount(transaction.getAmount().toString());
+*/
 
         return modelMapper.map(transaction, TransactionResponse.class);
     }
