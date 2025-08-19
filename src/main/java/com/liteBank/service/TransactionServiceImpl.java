@@ -17,6 +17,9 @@ import org.springframework.stereotype.Service;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import static com.liteBank.util.ProjectUtil.DEFAULT_PAGE_NUMBER;
+import static com.liteBank.util.ProjectUtil.DEFAULT_PAGE_SIZE;
+
 @Service
 @AllArgsConstructor
 @Slf4j
@@ -61,8 +64,9 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<TransactionResponse> getTransactionsFor(String accountNumber, int page, int size) {
-        if(page < 1)
-        page = page -1;
+        if(page < 1) page = DEFAULT_PAGE_NUMBER;
+        page = page - 1;
+        if(size < 1) size = DEFAULT_PAGE_SIZE;
         Pageable pageable = PageRequest.of(page, size);
         Page<Transaction> transactions =
                 transactionRepository.retrieveTransactionsByAccountNumber(accountNumber, pageable);
