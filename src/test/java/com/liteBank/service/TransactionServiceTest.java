@@ -7,8 +7,10 @@ import com.liteBank.dtos.response.TransactionResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,5 +35,14 @@ public class TransactionServiceTest {
         assertThat(transaction).isNotNull();
         assertThat(transaction.getAmount())
                 .isEqualTo(transactionRequest.getAmount().toString());
+    }
+
+    @Test
+    @Sql(scripts = {""})
+    void testCanGetTransactionByAccountNumber() {
+        List<TransactionResponse> transactions =
+                transactionService.getTransactionsFor("0123456789", 1, 5);
+        assertThat(transactions).isNotNull();
+        assertThat(transactions.size()).isEqualTo(5);
     }
 }
