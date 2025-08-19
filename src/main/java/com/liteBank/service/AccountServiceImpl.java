@@ -43,7 +43,7 @@ public class AccountServiceImpl implements AccountService {
         TransactionResponse transactionResponse = new TransactionResponse();
         transactionResponse.setAmount(ZERO.toString());
         TransactionResponse response = transactions.stream()
-                .reduce(transactionResponse , (a, b)-> {
+                .reduce(transactionResponse, (a, b) -> {
                     BigDecimal total = ZERO;
                     if (b.getTransactionType() == TransactionType.CREDIT)
                         total = total.add(new BigDecimal(b.getAmount()));
@@ -51,9 +51,14 @@ public class AccountServiceImpl implements AccountService {
                         total = total.subtract(new BigDecimal(b.getAmount()));
                     transactionResponse.setAmount(
                             new BigDecimal(a.getAmount())
-                                    .add(total).toString());
-                })
-        return null;
+                                    .add(total).toString()
+                    );
+                    return transactionResponse;
+                });
+
+        ViewAccountResponse viewAccountResponse = new ViewAccountResponse();
+        viewAccountResponse.setBalance(response.toString());
+        return viewAccountResponse;
     }
 
     private static CreateTransactionRequest buildTransactionRequest(DepositRequest depositRequest) {
