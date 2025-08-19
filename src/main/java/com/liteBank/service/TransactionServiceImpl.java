@@ -61,7 +61,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<TransactionResponse> getTransactionsFor(String accountNumber, int page, int size) {
-        page = page -1 ;
+        page = page -1;
         Pageable pageable = PageRequest.of(page, size);
         Page<Transaction> transactions =
                 transactionRepository.retrieveTransactionsByAccountNumber(accountNumber, pageable);
