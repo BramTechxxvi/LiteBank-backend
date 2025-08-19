@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, String> {
-    Page<Transaction> retrieveByAccountNumber(String accountNumber, Pageable pageable);
+    Page<Transaction> readByAccountNumber(String accountNumber, Pageable pageable);
 }
