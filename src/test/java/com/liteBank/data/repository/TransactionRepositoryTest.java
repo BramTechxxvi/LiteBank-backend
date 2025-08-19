@@ -7,7 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.test.context.jdbc.Sql;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -17,12 +19,13 @@ class TransactionRepositoryTest {
     private TransactionRepository transactionRepository;
 
     @Test
+    @Sql(scripts = {"/db/data.sql"})
     void retrieveAccountNumberTest() {
         String accountNumber = "0123456789";
         Pageable pageable = PageRequest.of(0, 5);
-        Page<Transaction> transactions = transactionRepository.retrieveByAccountNumber(accountNumber, pageable);
+        Page<Transaction> transactions = transactionRepository.readByAccountNumber(accountNumber, pageable);
         assertThat(transactions).isNotNull();
-        assertThat(transactions.getContent().size().isEqualto(5));
+        assertThat(transactions.getContent().size()).isEqualTo(5);
     }
 
 }
