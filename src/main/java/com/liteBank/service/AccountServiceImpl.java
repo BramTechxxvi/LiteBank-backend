@@ -1,6 +1,5 @@
 package com.liteBank.service;
 
-import com.liteBank.data.models.Account;
 import com.liteBank.data.repository.AccountRepository;
 import com.liteBank.dtos.enums.TransactionStatus;
 import com.liteBank.dtos.enums.TransactionType;
@@ -26,7 +25,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public DepositResponse deposit(DepositRequest depositRequest) {
-        Account foundAccount = accountRepository.findByAccountNumber(depositRequest.getAccountNumber())
+        accountRepository.findByAccountNumber(depositRequest.getAccountNumber())
                 .orElseThrow(()-> new AccountNotFoundException("Account not found"));
 
         CreateTransactionRequest transactionRequest = buildTransactionRequest(depositRequest);
@@ -37,7 +36,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public ViewAccountResponse viewDetailsFor(String accountNumber) {
-        List<TransactionResponse> transactions = transactionService.getTransactionsFor(accountNumber);
+        List<TransactionResponse> transactions = transactionService.getTransactionsFor(accountNumber, 0, 0);
         return null;
     }
 
