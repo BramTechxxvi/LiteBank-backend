@@ -9,12 +9,14 @@ import com.liteBank.dtos.request.DepositRequest;
 import com.liteBank.dtos.response.CreateTransactionResponse;
 import com.liteBank.dtos.response.DepositResponse;
 import com.liteBank.exception.AccountNotFoundException;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
 @Service
+@AllArgsConstructor
 @RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
 
