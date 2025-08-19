@@ -36,7 +36,13 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public ViewAccountResponse viewDetailsFor(String accountNumber) {
-        List<TransactionResponse> transactions = transactionService.getTransactionsFor(accountNumber);
+        List<TransactionResponse> transactions =
+                transactionService.getTransactionsFor(accountNumber);
+        Transaction
+//        transactions.stream()
+//                .reduce(BigDecimal.ZERO , ()-> {
+//                    BigDecimal amount = BigDecimal.ZERO;
+//                })
         return null;
     }
 

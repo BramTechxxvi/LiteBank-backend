@@ -38,7 +38,7 @@ public class TransactionServiceTest {
     }
 
     @Test
-    @Sql(scripts = {""})
+    @Sql(scripts = {"/db/data.sql"})
     void testCanGetTransactionByAccountNumber() {
         List<TransactionResponse> transactions =
                 transactionService.getTransactionsFor("0123456789");
