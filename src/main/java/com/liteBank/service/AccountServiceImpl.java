@@ -47,7 +47,11 @@ public class AccountServiceImpl implements AccountService {
                     BigDecimal total = ZERO;
                     if (b.getTransactionType() == TransactionType.CREDIT)
                         total = total.add(new BigDecimal(b.getAmount()));
-
+                    else
+                        total = total.subtract(new BigDecimal(b.getAmount()));
+                    transactionResponse.setAmount(
+                            new BigDecimal(a.getAmount())
+                                    .add(total).toString());
                 })
         return null;
     }
