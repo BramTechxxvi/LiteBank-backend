@@ -16,6 +16,8 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 
+import static java.math.BigDecimal.ZERO;
+
 @Service
 @RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
@@ -38,11 +40,15 @@ public class AccountServiceImpl implements AccountService {
     public ViewAccountResponse viewDetailsFor(String accountNumber) {
         List<TransactionResponse> transactions =
                 transactionService.getTransactionsFor(accountNumber);
-        Transaction
-//        transactions.stream()
-//                .reduce(BigDecimal.ZERO , ()-> {
-//                    BigDecimal amount = BigDecimal.ZERO;
-//                })
+        TransactionResponse transactionResponse = new TransactionResponse();
+        transactionResponse.setAmount(ZERO.toString());
+        TransactionResponse response = transactions.stream()
+                .reduce(transactionResponse , (a, b)-> {
+                    BigDecimal total = ZERO;
+                    if (b.getTransactionType() == TransactionType.CREDIT)
+                        total = total.add(new BigDecimal(b.getAmount()));
+
+                })
         return null;
     }
 
