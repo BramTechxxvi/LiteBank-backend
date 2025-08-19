@@ -6,4 +6,5 @@ import com.liteBank.dtos.response.DepositResponse;
 public interface AccountService {
 
     DepositResponse deposit(DepositRequest depositRequest);
+    ViewAccountResponse viewDetailsFor(String accountNumber);
 }
