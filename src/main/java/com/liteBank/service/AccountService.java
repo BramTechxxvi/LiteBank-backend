@@ -2,6 +2,7 @@ package com.liteBank.service;
 
 import com.liteBank.dtos.request.DepositRequest;
 import com.liteBank.dtos.response.DepositResponse;
+import com.liteBank.dtos.response.ViewAccountResponse;
 
 public interface AccountService {
 
