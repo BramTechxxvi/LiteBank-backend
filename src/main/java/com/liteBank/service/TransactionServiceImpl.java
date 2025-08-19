@@ -62,7 +62,7 @@ public class TransactionServiceImpl implements TransactionService {
         page = page -1 ;
         Pageable pageable = PageRequest.of(page, size);
         Page<Transaction> transactions =
-                transactionRepository.retrieveTransactionByAccountNumber(accountNumber, pageable);
+                transactionRepository.retrieveTransactionsByAccountNumber(accountNumber, pageable);
         Type listType = new TypeToken<List<TransactionResponse>>() {}.getType();
         List<TransactionResponse> transactionResponses =
                 modelMapper.map(transactions.getContent(), listType);
