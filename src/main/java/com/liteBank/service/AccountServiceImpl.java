@@ -11,6 +11,7 @@ import com.liteBank.dtos.response.TransactionResponse;
 import com.liteBank.dtos.response.ViewAccountResponse;
 import com.liteBank.exception.AccountNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -24,6 +25,7 @@ public class AccountServiceImpl implements AccountService {
 
     private final AccountRepository accountRepository;
     private final TransactionService transactionService;
+    private final ModelMapper modelMapper;
 
     @Override
     public DepositResponse deposit(DepositRequest depositRequest) {
@@ -61,21 +63,11 @@ public class AccountServiceImpl implements AccountService {
         return viewAccountResponse;
     }
 
-    private static CreateTransactionRequest buildTransactionRequest(DepositRequest depositRequest) {
-        var createTransactionRequest = new CreateTransactionRequest();
-        createTransactionRequest.setAccountNumber(depositRequest.getAccountNumber());
-        createTransactionRequest.setAmount(depositRequest.getAmount());
-        createTransactionRequest.setTransactionType(TransactionType.CREDIT);
-
-        return createTransactionRequest;
+    private CreateTransactionRequest buildTransactionRequest(DepositRequest depositRequest) {
+        return modelMapper.map(depositRequest, CreateTransactionRequest.class);
     }
 
-    private static DepositResponse buildDepositResponse(CreateTransactionResponse response) {
-        var depositResponse = new DepositResponse();
-        depositResponse.setAmount(new BigDecimal(response.getAmount()));
-        depositResponse.setTransactionId(response.getId());
-        depositResponse.setTransactionStatus(TransactionStatus.SUCCESS);
-
-        return depositResponse;
+    private DepositResponse buildDepositResponse(CreateTransactionResponse response) {
+        return modelMapper.map(response, DepositResponse.class);
     }
 }
