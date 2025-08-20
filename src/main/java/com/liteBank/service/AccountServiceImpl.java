@@ -1,7 +1,6 @@
 package com.liteBank.service;
 
 import com.liteBank.data.repository.AccountRepository;
-import com.liteBank.dtos.enums.TransactionStatus;
 import com.liteBank.dtos.enums.TransactionType;
 import com.liteBank.dtos.request.CreateTransactionRequest;
 import com.liteBank.dtos.request.DepositRequest;

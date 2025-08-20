@@ -30,7 +30,7 @@ public class AccountControllerTest {
         depositRequest.setPaymentMethod(PaymentMethod.CARD);
 
         String json = mapper.writeValueAsString(depositRequest);
-        String depositEndpoint = "api/vi/account";
+        String depositEndpoint = "api/v1/account";
         mockMvc.perform(MockMvcRequestBuilders.post(depositEndpoint)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json));
