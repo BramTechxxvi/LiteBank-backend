@@ -38,7 +38,7 @@ public class AccountServiceTest {
     void testCanViewAccount() {
         ViewAccountResponse response = accountService.viewDetailsFor("0123456789");
         assertThat(response).isNotNull();
-        assertThat(response.getBalance()).isEqualTo(new BigDecimal("10000.00").toString());
+        assertThat(response.getBalance()).isEqualTo(("10000.00"));
 
 //-71800
     }
