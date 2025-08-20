@@ -59,7 +59,7 @@ public class AccountServiceImpl implements AccountService {
 
         TransactionResponse transactionResponse = new TransactionResponse();
         transactionResponse.setAmount(ZERO.toString());
-        TransactionResponse response = transactionService.getTransactionsFor(accountNumber).stream()
+        TransactionResponse response = transactionService.getTransactionsFor(accountNumber).stream(List<TransactionResponse>)
                 .reduce(transactionResponse, (a, b) -> {
                     BigDecimal total = ZERO;
                     if (b.getTransactionType() == TransactionType.CREDIT)
