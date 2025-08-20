@@ -10,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.math.BigDecimal;
 
@@ -33,6 +35,9 @@ public class AccountControllerTest {
         String depositEndpoint = "api/v1/account";
         mockMvc.perform(MockMvcRequestBuilders.post(depositEndpoint)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(json));
+                .content(json))
+                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andDo(MockMvcResultHandlers.print());
     }
+
 }
