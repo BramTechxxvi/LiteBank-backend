@@ -1,3 +1,6 @@
+truncate table account cascade;
+truncate table transaction cascade;
+
 insert into account(id, name, username, password, account_number) values (
 '12346', 'Ibrahim Babs', 'Bramtech', 'bram12345', '1123456789');
 

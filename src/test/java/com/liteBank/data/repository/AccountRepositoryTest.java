@@ -11,13 +11,13 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@Sql(scripts = {"/db/data.sql"})
 class AccountRepositoryTest {
 
     @Autowired
     private AccountRepository accountRepository;
 
     @Test
-    @Sql(scripts = {"/db/data.sql"})
     void findByAccountNumber() {
        Optional<Account> optionalAccount = accountRepository.findByAccountNumber("0123456789");
        Account account = optionalAccount.orElseThrow(RuntimeException::new);
