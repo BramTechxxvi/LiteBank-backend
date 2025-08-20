@@ -72,7 +72,6 @@ public class AccountServiceImpl implements AccountService {
 
     private DepositResponse buildDepositResponse(CreateTransactionResponse response) {
         return modelMapper.map(response, DepositResponse.class);
-
     }
 
 }
