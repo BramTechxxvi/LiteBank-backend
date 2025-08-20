@@ -16,6 +16,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@Sql(scripts = {"/db/data.sql"})
 public class TransactionServiceTest {
 
     @Autowired
@@ -38,11 +39,10 @@ public class TransactionServiceTest {
     }
 
     @Test
-    @Sql(scripts = {"/db/data.sql"})
     void testCanGetTransactionByAccountNumber() {
         List<TransactionResponse> transactions =
                 transactionService.getTransactionsFor("0123456789");
         assertThat(transactions).isNotNull();
-        assertThat(transactions.size()).isEqualTo(5);
+        assertThat(transactions.size()).isEqualTo(6);
     }
 }
