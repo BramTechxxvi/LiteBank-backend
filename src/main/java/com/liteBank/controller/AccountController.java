@@ -2,6 +2,7 @@ package com.liteBank.controller;
 
 import com.liteBank.dtos.request.DepositRequest;
 import com.liteBank.dtos.response.DepositResponse;
+import com.liteBank.dtos.response.ErrorResponse;
 import com.liteBank.service.AccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
