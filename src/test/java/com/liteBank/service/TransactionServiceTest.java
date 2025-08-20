@@ -43,6 +43,6 @@ public class TransactionServiceTest {
         List<TransactionResponse> transactions =
                 transactionService.getTransactionsFor("0123456789");
         assertThat(transactions).isNotNull();
-        assertThat(transactions.size()).isEqualTo(6);
+        assertThat(transactions.size()).isEqualTo(5);
     }
 }

@@ -16,13 +16,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@Sql(scripts = {"/db/data.sql"})
 public class AccountServiceTest {
 
     @Autowired
     private AccountService accountService;
 
     @Test
-    @Sql(scripts = {"/db/data.sql"})
     void testCanDeposit() {
         DepositRequest depositRequest = new DepositRequest();
         depositRequest.setAccountNumber("0123456789");
@@ -35,7 +35,6 @@ public class AccountServiceTest {
     }
 
     @Test
-    @Sql(scripts = {"/db/data.sql"})
     void testCanViewAccount() {
         ViewAccountResponse response = accountService.viewDetailsFor("0123456789");
         assertThat(response).isNotNull();

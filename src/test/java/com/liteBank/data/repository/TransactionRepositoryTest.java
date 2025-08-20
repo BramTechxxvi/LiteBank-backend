@@ -12,13 +12,13 @@ import org.springframework.test.context.jdbc.Sql;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
+@Sql(scripts = {"/db/data.sql"})
 class TransactionRepositoryTest {
 
     @Autowired
     private TransactionRepository transactionRepository;
 
     @Test
-    @Sql(scripts = {"/db/data.sql"})
     void retrieveAccountNumberTest() {
         String accountNumber = "0123456789";
         Pageable pageable = PageRequest.of(0, 5);
