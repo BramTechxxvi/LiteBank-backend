@@ -24,14 +24,15 @@ public class AccountControllerTest {
     void testCanDeposit() throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         DepositRequest depositRequest = new DepositRequest();
+
         depositRequest.setAccountNumber("0123456789");
         depositRequest.setAmount(new BigDecimal("200_000.00"));
         depositRequest.setPaymentMethod(PaymentMethod.CARD);
+
         String json = mapper.writeValueAsString(depositRequest);
         String depositEndpoint = "api/vi/account";
         mockMvc.perform(MockMvcRequestBuilders.post(depositEndpoint)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json));
-
     }
 }
